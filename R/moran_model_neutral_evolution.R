@@ -87,7 +87,7 @@ N = 1000  #total population size
 i = 100   #initial size pop A
 tmax = 1000  #number of interactions
 
-nruns <- 10
+nruns <- 10  #number of repetitions of the process
 range <- 1:nruns
 
 #Simulation:
@@ -338,6 +338,7 @@ multiple_neutral_evolution_col <- function(N, i, tmax, nruns, index) {
   }
 }
 
+
 #Grid plot: different palettes
 par(mfrow=c(3,2)) #plot grid
 multiple_neutral_evolution_col(1000, 100, 1000, 10, 1)
@@ -360,4 +361,11 @@ multiple_neutral_evolution_col(40, 4, 1000, 10, 5)
 multiple_neutral_evolution_col(30, 3, 1000, 10, 5)
 multiple_neutral_evolution_col(20, 2, 1000, 10, 5)
 multiple_neutral_evolution_col(10, 1, 1000, 10, 5)
+par(mfrow=c(1,1))
+
+#Grid 1x3:
+par(mfrow=c(3,1)) #plot grid
+multiple_neutral_evolution(10, 5, 100, 10)
+multiple_neutral_evolution(100, 50, 100, 10)
+multiple_neutral_evolution(1000, 500, 100, 10)
 par(mfrow=c(1,1))
