@@ -77,9 +77,9 @@ plot(unlist(time),unlist(popA), type = 'l',
 install.packages("wesanderson")
 library("wesanderson")
 
-cols <- wes_palette("GrandBudapest2", 10, type = "continuous")
+cols <- wes_palette("Zissou1", 10, type = "continuous")
 cols2 <- wes_palette("Darjeeling1", 10, type = "continuous")
-cols3 <- wes_palette("Zissou1", 10, type = "continuous")
+cols3 <- wes_palette("GrandBudapest2", 10, type = "continuous")
 
 #Parameters:
 N = 1000  #total population size
@@ -96,7 +96,7 @@ for (j in range) {
   popA <- sim[2]
 
   if (j == 1) {
-    plot(unlist(time),unlist(popA), type = 'l', col = cols3[1],
+    plot(unlist(time),unlist(popA), type = 'l', col = cols[1],
          xlim = c(0, tmax),
          ylim = c(i - 50, i + 50),
          xlab = 'Time',
@@ -105,6 +105,120 @@ for (j in range) {
   }
 
   else {
-    lines(unlist(time),unlist(popA), col = cols3[j])
+    lines(unlist(time),unlist(popA), col = cols[j])
   }
 }
+
+#Multiple runs: different initial values pop A----------------------------------
+
+names(wes_palettes)
+cols <- wes_palette("Zissou1", 10, type = "continuous")
+cols2 <- wes_palette("Darjeeling1", 10, type = "continuous")
+cols3 <- wes_palette("GrandBudapest2", 10, type = "continuous")
+cols4 <- wes_palette("FantasticFox1", 10, type = "continuous")
+cols5 <- wes_palette("Moonrise1", 10, type = "continuous")
+cols6 <- wes_palette("Moonrise2", 10, type = "continuous")
+cols7 <- wes_palette("GrandBudapest1", 10, type = "continuous")
+cols8 <- wes_palette("IsleofDogs1", 10, type = "continuous")
+cols9 <- wes_palette("IsleofDogs2", 10, type = "continuous")
+
+pals <- list(cols, cols2, cols3, cols4, cols5, cols6, cols7, cols8, cols9)
+pals[1]
+
+
+#Parameters:
+N = 1000                                   #total population size
+i <- seq(from = 100, to = 900, by = 100)   #initial size pop A
+tmax = 1000                                #number of interactions
+
+par(mfrow=c(3,3))
+
+#Simulation: #different palettes for each i, ylim +- 50
+for (k in i) {
+
+  nruns <- 10
+  range <- 1:nruns
+
+  for (j in range) {
+    sim <- neutral_evolution(N, k, tmax)
+    time <- sim[1]
+    popA <- sim[2]
+
+    index <- which(i == k)
+
+    if (j == 1) {
+      plot(unlist(time),unlist(popA), type = 'l', col = pals[[index]][1],
+           xlim = c(0, tmax),
+           ylim = c(k - 50, k + 50),
+           xlab = 'Time',
+           ylab = 'Abs freq allele A',
+           main = k)
+    }
+
+    else {
+      lines(unlist(time),unlist(popA), col = pals[[index]][j])
+    }
+  }
+
+}
+
+
+#Simulation: #different palettes for each i, ylim (0, N)
+for (k in i) {
+
+  nruns <- 10
+  range <- 1:nruns
+
+  for (j in range) {
+    sim <- neutral_evolution(N, k, tmax)
+    time <- sim[1]
+    popA <- sim[2]
+
+    index <- which(i == k)
+
+    if (j == 1) {
+      plot(unlist(time),unlist(popA), type = 'l', col = pals[[index]][1],
+           xlim = c(0, tmax),
+           ylim = c(0, N),
+           xlab = 'Time',
+           ylab = 'Abs freq allele A',
+           main = k)
+    }
+
+    else {
+      lines(unlist(time),unlist(popA), col = pals[[index]][j])
+    }
+  }
+
+}
+
+
+#Simulation: #one palette, ylim (0, N)
+for (k in i) {
+
+  nruns <- 10
+  range <- 1:nruns
+
+  for (j in range) {
+    sim <- neutral_evolution(N, k, tmax)
+    time <- sim[1]
+    popA <- sim[2]
+
+    if (j == 1) {
+      plot(unlist(time),unlist(popA), type = 'l', col = cols3[1],
+           xlim = c(0, tmax),
+           ylim = c(0, N),
+           xlab = 'Time',
+           ylab = 'Abs freq allele A',
+           main = k)
+    }
+
+    else {
+      lines(unlist(time),unlist(popA), col = cols3[j])
+    }
+  }
+
+}
+
+
+
