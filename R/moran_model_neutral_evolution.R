@@ -15,7 +15,7 @@ neutral_evolution <- function(N, i, tmax) {
   t = 0         #initial time
 
   #Simulation: Moran process:
-  while (t < tmax) {
+  while (t < tmax && i != N && i != 0) {
 
     'At each interation one individual of the total population N is choosen to
     reproduce and one is choosen to die, both randomly sorted. The four possible
@@ -72,6 +72,7 @@ plot(unlist(time),unlist(popA), type = 'l',
      col = 'blue',
      main = 'Moran process: Neutral evolution')
 
+
 #Multiple runs------------------------------------------------------------------
 
 install.packages("wesanderson")
@@ -109,6 +110,7 @@ for (j in range) {
   }
 }
 
+
 #Multiple runs: different initial values pop A----------------------------------
 
 names(wes_palettes)
@@ -123,15 +125,13 @@ cols8 <- wes_palette("IsleofDogs1", 10, type = "continuous")
 cols9 <- wes_palette("IsleofDogs2", 10, type = "continuous")
 
 pals <- list(cols, cols2, cols3, cols4, cols5, cols6, cols7, cols8, cols9)
-pals[1]
-
 
 #Parameters:
 N = 1000                                   #total population size
 i <- seq(from = 100, to = 900, by = 100)   #initial size pop A
 tmax = 1000                                #number of interactions
 
-par(mfrow=c(3,3))
+par(mfrow=c(3,3)) #plot grid
 
 #Simulation: #different palettes for each i, ylim +- 50
 for (k in i) {
@@ -163,6 +163,7 @@ for (k in i) {
 }
 
 
+'Just little alterations on the plot options...'
 #Simulation: #different palettes for each i, ylim (0, N)
 for (k in i) {
 
@@ -220,5 +221,131 @@ for (k in i) {
 
 }
 
+par(mfrow=c(1,1))
+
+
+#Effects population size N------------------------------------------------------
+'Different N, same proportion for the initial i (10% * N)'
+
+#Parameters: N 10% (1000 -> 100), i 10% * N
+N = 100  #total population size
+i = 10   #initial size pop A
+tmax = 1000  #number of interactions
+
+nruns <- 10
+range <- 1:nruns
+
+#Simulation:
+for (j in range) {
+  sim <- neutral_evolution(N, i, tmax)
+  time <- sim[1]
+  popA <- sim[2]
+
+  if (j == 1) {
+    plot(unlist(time),unlist(popA), type = 'l', col = cols[1],
+         xlim = c(0, tmax),
+         ylim = c(0, N),
+         xlab = 'Time',
+         ylab = 'Absolute frequency of the allele A in the population',
+         main = 'Moran process: Neutral evolution')
+  }
+
+  else {
+    lines(unlist(time),unlist(popA), col = cols[j])
+  }
+}
+
+
+#Defining a new function for nruns with the same parameters
+multiple_neutral_evolution <- function(N, i, tmax, nruns) {
+
+  range <- 1:nruns
+
+  #Simulation:
+  for (j in range) {
+    sim <- neutral_evolution(N, i, tmax)
+    time <- sim[1]
+    popA <- sim[2]
+
+    if (j == 1) {
+      plot(unlist(time),unlist(popA), type = 'l', col = cols[1],
+           xlim = c(0, tmax),
+           ylim = c(0, N),
+           xlab = 'Time',
+           ylab = 'Abs freq allele A',
+           main = paste('N =', N))
+    }
+
+    else {
+      lines(unlist(time),unlist(popA), col = cols[j])
+    }
+  }
+}
+
+
+#Parameters: N 50% (1000 -> 500), i 10% * N
+N = 500  #total population size
+i = 50   #initial size pop A
+tmax = 1000  #number of interactions
+nruns <- 10
+
+multiple_neutral_evolution(N, i, tmax, nruns)
+
+
+#Parameters: N 20% (1000 -> 200), i 10% * N
+N = 200  #total population size
+i = 20   #initial size pop A
+tmax = 1000  #number of interactions
+nruns <- 10
+
+multiple_neutral_evolution(N, i, tmax, nruns)
+
+
+#Grid plot
+par(mfrow=c(3,2)) #plot grid
+multiple_neutral_evolution(1000, 100, 1000, 10)
+multiple_neutral_evolution(500, 50, 1000, 10)
+multiple_neutral_evolution(200, 20, 1000, 10)
+multiple_neutral_evolution(100, 10, 1000, 10)
+multiple_neutral_evolution(50, 5, 1000, 10)
+multiple_neutral_evolution(10, 1, 1000, 10)
+par(mfrow=c(1,1))
+
+
+#defining function for nruns with the same parameters + different palettes
+multiple_neutral_evolution_col <- function(N, i, tmax, nruns, index) {
+
+  range <- 1:nruns
+
+  #Simulation:
+  for (j in range) {
+    sim <- neutral_evolution(N, i, tmax)
+    time <- sim[1]
+    popA <- sim[2]
+
+    if (j == 1) {
+      plot(unlist(time),unlist(popA), type = 'l', col = pals[[index]][1],
+           xlim = c(0, tmax),
+           ylim = c(0, N),
+           xlab = 'Time',
+           ylab = 'Abs freq allele A',
+           main = paste('N =', N))
+    }
+
+    else {
+      lines(unlist(time),unlist(popA), col = pals[[index]][j])
+    }
+  }
+}
+
+#Grid plot: different palettes
+par(mfrow=c(3,2)) #plot grid
+multiple_neutral_evolution_col(1000, 100, 1000, 10, 1)
+multiple_neutral_evolution_col(500, 50, 1000, 10, 7)
+multiple_neutral_evolution_col(200, 20, 1000, 10, 3)
+multiple_neutral_evolution_col(100, 10, 1000, 10, 4)
+multiple_neutral_evolution_col(50, 5, 1000, 10, 5)
+multiple_neutral_evolution_col(10, 1, 1000, 10, 6)
+par(mfrow=c(1,1))
 
 

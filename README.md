@@ -23,4 +23,5 @@ project/
 
 ## Requirements
 R packages required: wesanderson.
+
 Python packages required: numpy and matplotlib.
