@@ -55,10 +55,18 @@ neutral_evolution <- function(N, i, tmax) {
 
 
 # Neutral evolution Moran model function: nruns with the same parameters--------
+
 multiple_neutral_evolution <- function(N, i, tmax, nruns) {
+  #multiple_neutral_evolution(total pop size, initial size pop A,
+                              # interactions, # of repetitions of the process)
+
+  'Gives the evolution dynamics of the allele A in a finite population of
+   constant size in which two alleles A and B are competing for dominance, for
+   multiple observations/repetitions of the same process (same parameters N, i,
+   tmax).'
 
   #Color palette for the plot:
-  cols <- wes_palette("Zissou1", 10, type = "continuous")
+  cols <- wes_palette("Zissou1", nruns, type = "continuous")
 
   range <- 1:nruns
 
@@ -85,18 +93,23 @@ multiple_neutral_evolution <- function(N, i, tmax, nruns) {
 
 # Neutral evolution Moran model function: nruns with the same parameters +
 # different palettes------------------------------------------------------------
+
 multiple_neutral_evolution_col <- function(N, i, tmax, nruns, index) {
+  #multiple_neutral_evolution_col(total pop size, initial size pop A,
+  #                               # interactions, # of repetitions of the
+  #                               process, palette selector in vector pals)
+
 
   #Color palettes for the plot:
-  cols <- wes_palette("Zissou1", 10, type = "continuous")
-  cols2 <- wes_palette("Darjeeling1", 10, type = "continuous")
-  cols3 <- wes_palette("GrandBudapest2", 10, type = "continuous")
-  cols4 <- wes_palette("FantasticFox1", 10, type = "continuous")
-  cols5 <- wes_palette("Moonrise1", 10, type = "continuous")
-  cols6 <- wes_palette("Moonrise2", 10, type = "continuous")
-  cols7 <- wes_palette("GrandBudapest1", 10, type = "continuous")
-  cols8 <- wes_palette("IsleofDogs1", 10, type = "continuous")
-  cols9 <- wes_palette("IsleofDogs2", 10, type = "continuous")
+  cols <- wes_palette("Zissou1", nruns, type = "continuous")
+  cols2 <- wes_palette("Darjeeling1", nruns, type = "continuous")
+  cols3 <- wes_palette("GrandBudapest2", nruns, type = "continuous")
+  cols4 <- wes_palette("FantasticFox1", nruns, type = "continuous")
+  cols5 <- wes_palette("Moonrise1", nruns, type = "continuous")
+  cols6 <- wes_palette("Moonrise2", nruns, type = "continuous")
+  cols7 <- wes_palette("GrandBudapest1", nruns, type = "continuous")
+  cols8 <- wes_palette("IsleofDogs1", nruns, type = "continuous")
+  cols9 <- wes_palette("IsleofDogs2", nruns, type = "continuous")
 
   pals <- list(cols, cols2, cols3, cols4, cols5, cols6, cols7, cols8, cols9)
 
