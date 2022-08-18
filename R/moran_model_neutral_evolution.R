@@ -349,3 +349,19 @@ multiple_neutral_evolution_col(10, 1, 1000, 10, 6)
 par(mfrow=c(1,1))
 
 
+#Grid plot 3x3:
+par(mfrow=c(3,3)) #plot grid
+multiple_neutral_evolution_col(90, 9, 1000, 10, 5)
+multiple_neutral_evolution_col(80, 8, 1000, 10, 5)
+multiple_neutral_evolution_col(70, 7, 1000, 10, 5)
+multiple_neutral_evolution_col(60, 6, 1000, 10, 5)
+multiple_neutral_evolution_col(50, 5, 1000, 10, 5)
+multiple_neutral_evolution_col(40, 4, 1000, 10, 5)
+multiple_neutral_evolution_col(30, 3, 1000, 10, 5)
+multiple_neutral_evolution_col(20, 2, 1000, 10, 5)
+multiple_neutral_evolution_col(10, 1, 1000, 10, 5)
+par(mfrow=c(1,1))
+
+
+
+
