@@ -361,7 +361,3 @@ multiple_neutral_evolution_col(30, 3, 1000, 10, 5)
 multiple_neutral_evolution_col(20, 2, 1000, 10, 5)
 multiple_neutral_evolution_col(10, 1, 1000, 10, 5)
 par(mfrow=c(1,1))
-
-
-
-
