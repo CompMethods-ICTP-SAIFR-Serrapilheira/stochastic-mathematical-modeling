@@ -20,3 +20,6 @@ project/
 *    ├── figs/
 *    └── README.md
 ```
+
+## Requirements
+Python packages required: numpy and matplotlib.
