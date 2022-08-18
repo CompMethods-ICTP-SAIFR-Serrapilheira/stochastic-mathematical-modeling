@@ -71,3 +71,40 @@ plot(unlist(time),unlist(popA), type = 'l',
      ylab = 'Absolute frequency of the allele A in the population',
      col = 'blue',
      main = 'Moran process: Neutral evolution')
+
+#Multiple runs------------------------------------------------------------------
+
+install.packages("wesanderson")
+library("wesanderson")
+
+cols <- wes_palette("GrandBudapest2", 10, type = "continuous")
+cols2 <- wes_palette("Darjeeling1", 10, type = "continuous")
+cols3 <- wes_palette("Zissou1", 10, type = "continuous")
+
+#Parameters:
+N = 1000  #total population size
+i = 100   #initial size pop A
+tmax = 1000  #number of interactions
+
+nruns <- 10
+range <- 1:nruns
+
+#Simulation:
+for (j in range) {
+  sim <- neutral_evolution(N, i, tmax)
+  time <- sim[1]
+  popA <- sim[2]
+
+  if (j == 1) {
+    plot(unlist(time),unlist(popA), type = 'l', col = cols3[1],
+         xlim = c(0, tmax),
+         ylim = c(i - 50, i + 50),
+         xlab = 'Time',
+         ylab = 'Absolute frequency of the allele A in the population',
+         main = 'Moran process: Neutral evolution')
+  }
+
+  else {
+    lines(unlist(time),unlist(popA), col = cols3[j])
+  }
+}
