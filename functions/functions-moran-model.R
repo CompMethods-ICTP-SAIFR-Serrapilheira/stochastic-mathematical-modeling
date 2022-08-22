@@ -3,6 +3,7 @@
 'Atention: Required Rpackage: "wesanderson". The package is required in order to
 plot the multiple graphics functions.'
 
+
 # Neutral evolution Moran model function----------------------------------------
 
 neutral_evolution <- function(N, i, tmax) {
