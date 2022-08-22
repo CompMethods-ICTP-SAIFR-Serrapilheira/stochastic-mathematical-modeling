@@ -1,6 +1,7 @@
 # Evolutionary Dynamics: The Moran Model
 # Neutral evolution
 
+
 #Creating a function for neutral evolution with the Moran Model-----------------
 
 neutral_evolution <- function(N, i, tmax) {
@@ -159,7 +160,6 @@ for (k in i) {
       lines(unlist(time),unlist(popA), col = pals[[index]][j])
     }
   }
-
 }
 
 
@@ -190,7 +190,6 @@ for (k in i) {
       lines(unlist(time),unlist(popA), col = pals[[index]][j])
     }
   }
-
 }
 
 
@@ -218,7 +217,6 @@ for (k in i) {
       lines(unlist(time),unlist(popA), col = cols3[j])
     }
   }
-
 }
 
 par(mfrow=c(1,1))
@@ -348,7 +346,6 @@ multiple_neutral_evolution_col(100, 10, 1000, 10, 4)
 multiple_neutral_evolution_col(50, 5, 1000, 10, 5)
 multiple_neutral_evolution_col(10, 1, 1000, 10, 6)
 par(mfrow=c(1,1))
-
 
 #Grid plot 3x3:
 par(mfrow=c(3,3)) #plot grid
