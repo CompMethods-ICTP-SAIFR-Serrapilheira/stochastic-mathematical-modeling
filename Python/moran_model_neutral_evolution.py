@@ -137,6 +137,3 @@ plt.legend(['Theorical', 'Simulation: 100 runs, 10000 iterations'])
 plt.savefig('moran-neutral-N100-Pfixation-Py.png')
 
 plt.show()
-
-
-
