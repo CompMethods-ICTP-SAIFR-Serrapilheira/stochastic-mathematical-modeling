@@ -59,3 +59,5 @@ for (j in range) {
     lines(unlist(time),unlist(popA), col = cols[j])
   }
 }
+
+par(mfrow=c(1,1))

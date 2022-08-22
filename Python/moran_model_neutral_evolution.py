@@ -48,3 +48,29 @@ popA = values[1]
 
 plt.plot(time, popA)
 plt.xlim(0, tmax)
+
+
+
+#-------------------------------------------------------------------------------
+# Multiple runs
+
+#Parameters
+N = 100   #pop size
+i = 50   #initial size of pop A
+tmax = 10000 #number of interactions
+
+for j in range(10):
+  values = neutral_evolution(N, i, tmax) #N, i, tmax
+  time = values[0]
+  popA = values[1]
+
+  plt.plot(time, popA)
+
+plt.xlim(0, tmax)
+plt.xlabel('Time')
+plt.ylabel('Absolute frequency of allele A')
+plt.ylim(0, N)
+plt.rcParams['figure.figsize'] = (32, 12)
+plt.rcParams.update({'font.size': 18})
+plt.title('Moran Process - Neutral Evolution; N = 100')
+plt.savefig('moran-neutral-N100-i50-Py.png')
