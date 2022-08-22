@@ -8,9 +8,7 @@ In order to do so, the project is based on computational simulations of the mode
 
 ## Project structure
 
-The project's folder structure is organized as shown below. In the `R` and in the `Python` directory you will find the scripts. The `docs` contains the short report of the project
-and in `figs` you can find all the resulting figures. 
-
+The project's folder structure is organized as shown below. In the `R` and in the `Python` directory you will find the scripts (and for Python the the Jupyter Notebook was also included). The `docs` contains the short report of the project and the .bib file, and in `figs` you can find all the resulting figures. 
 
 ```
 project/
