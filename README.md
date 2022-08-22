@@ -12,8 +12,8 @@ The project's folder structure is organized as shown below. In the `R` and in th
 
 ```
 project/
-*    ├── R/
 *    ├── Python/
+*    ├── R/
 *    ├── docs/
 *    ├── figs/
 *    └── README.md
